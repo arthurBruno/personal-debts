@@ -24,9 +24,12 @@ const useStyles = makeStyles(() => ({
     padding: '30px',
     borderRadius: '5px',
 
-    '@media (max-width:800px)': {
+    '@media (max-width:900px)': {
+      width: '80%',
     },
-    '@media (max-width:959px)': {
+    '@media (max-height: 430px)': {
+      height: '80%',
+      overflowY: 'auto',
     },
   },
   title: {
