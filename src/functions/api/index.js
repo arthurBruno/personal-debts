@@ -1,5 +1,4 @@
 import axios from 'axios';
-
 const BASE_URL_JSON_PLACEHOLDER = 'https://jsonplaceholder.typicode.com';
 const CODE7_DEBTS_BASE_URL = 'https://provadev.xlab.digital/api/v1/divida';
 const CODE7_DEBTS_API_KEY = '7d43f9c1-3e73-459f-ae03-f8ae981ee0a4';
