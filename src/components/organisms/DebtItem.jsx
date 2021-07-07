@@ -53,7 +53,7 @@ const useStyles = makeStyles((theme) => ({
     },
     
     '&:hover': {
-      '& .currency': {
+      '& .currency-hover': {
         paddingRight: '110px',
       },
       
@@ -84,7 +84,7 @@ const DebtItem = ({
           <Typography variant="body2">Criado em: {moment(debt.criado).format('DD MMM YYYY')}</Typography>
         </Box>
 
-        <Box className="currency">
+        <Box className={`currency ${!isEditing && 'currency-hover'}`}>
           <Typography variant="subtitle1">{floatToCurrency(debt.valor)}</Typography>
         </Box>
       </Box>
