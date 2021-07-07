@@ -11,6 +11,10 @@ const useStyles = makeStyles((theme) => ({
 
     '& .MuiTypography-h5': {
       margin: '20px 0 10px',
+      
+      '@media (max-width: 959px)': {
+        margin: '20px 0',
+      }
     },
 
     '& .MuiList-root': {
@@ -49,14 +53,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DefaultList = ({ title, titleAdornment, children }) => {
+const DefaultList = ({
+  title,
+  titleLeftAdornment,
+  titleRightAdornment,
+  children,
+}) => {
   const classes = useStyles();
 
   return (
     <div className={classes.root}>
       <Box className={classes.boxTitle}>
+        {titleLeftAdornment && titleLeftAdornment}
         <Typography variant="h5">{title}</Typography>
-        {titleAdornment && titleAdornment}
+        {titleRightAdornment && titleRightAdornment}
       </Box>
       <List component="nav">
         {children}
