@@ -42,14 +42,12 @@ const Home = () => {
     getUsersAndDebts();
   }, []);
 
-  const handleUserClick = (user) => setSelectedUser(user);
-
   return (
     <Grid container>
       <Grid item md={4} xs={12}>
         <UsersList
           users={debtsUtils.filterIndebtedUsers(allUsers, allDebts)}
-          handleUserClick={handleUserClick}
+          handleUserClick={(user) => setSelectedUser(user)}
         />
       </Grid>
       <Grid item md={8} xs={12} className={classes.debtsList}>
