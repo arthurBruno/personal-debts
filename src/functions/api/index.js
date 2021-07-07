@@ -63,6 +63,26 @@ const api = {
     }
   },
 
+  updateDebt: async (debtId, userId, reason, amount) => {
+    try {
+      const body = {
+        idUsuario: userId,
+        motivo: reason,
+        valor: amount,
+      };
+
+      const { data } = await axios.put(`${CODE7_DEBTS_BASE_URL}/${debtId}?uuid=${CODE7_DEBTS_API_KEY}`, body);
+
+      if (data.success) {
+        return data.result;
+      }
+
+      return { error: data.message };
+    } catch (error) {
+      return { error };
+    }
+  },
+
   deleteDebt: async (debtId) => {
     try {
       const { data } = await axios.delete(`${CODE7_DEBTS_BASE_URL}/${debtId}?uuid=${CODE7_DEBTS_API_KEY}`);

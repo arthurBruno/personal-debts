@@ -26,12 +26,9 @@ const ModalAddDebt = ({
 
   const handleChange = (setValue, value, name) => {
     setValue(value);
-    console.log(setValue)
-    console.log(value)
-    console.log(name)
+
     if (!!fieldsWithError[name]) {
       const errors = fieldsWithError;
-      console.log(errors[name])
       delete errors[name];
       setFieldsWithError(errors);
     }

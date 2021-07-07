@@ -14,6 +14,12 @@ const theme = createTheme({
         backgroundColor: '#5C00A4 !important',
         borderRadius: '4px !important',
       },
+      outlined: {
+        color: '#5C00A4 !important',
+        padding: '9px 15px !important',
+        border: '1px solid rgba(92, 0, 164, 0.5) !important',
+        borderRadius: '4px !important',
+      },
     },
   },
   palette: {

@@ -40,6 +40,9 @@ const DebtsList = ({
             debt={debt}
             key={debt._id}
             handleDeleteDebt={handleDeleteDebt}
+            allUsers={allUsers}
+            getDebts={getDebts}
+            selectedUser={selectedUser}
           />
         ))}
       </DefaultList>

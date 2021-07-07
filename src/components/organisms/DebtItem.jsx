@@ -1,8 +1,7 @@
-import moment from 'moment';
+import { useState } from 'react';
 import {
   Box,
   ListItem,
-  ListItemText,
   IconButton,
   Typography,
   Tooltip,
@@ -10,10 +9,14 @@ import {
 } from '@material-ui/core';
 import EditIcon from '@material-ui/icons/EditRounded';
 import DeleteIcon from '@material-ui/icons/Delete';
+import moment from 'moment';
+import EditDebt from '../molecules/EditDebt';
 import { floatToCurrency } from '../../functions/utils/money';
 
 const useStyles = makeStyles((theme) => ({
   item: {
+    display: 'grid',
+    gridTemplateColumns: '100%',
     position: 'relative',
     borderBottom: `${theme.palette.grey.main} solid 1px`,
 
@@ -25,7 +28,13 @@ const useStyles = makeStyles((theme) => ({
       textAlign: 'end',
       transition: '0.2s',
     },
-    
+
+    '& .item-data': {
+      display: 'flex',
+      placeContent: 'space-between',
+      alignItems: 'center'
+    },
+
     '& .buttons': {
       position: 'absolute',
       right: -20,
@@ -57,37 +66,53 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const DebtItem = ({ debt, handleDeleteDebt }) => {
+const DebtItem = ({
+  debt,
+  handleDeleteDebt,
+  allUsers,
+  getDebts,
+  selectedUser,
+}) => {
   const classes = useStyles();
-
-  const handleEditClick = () => {
-    console.log('edit')
-  };
+  const [isEditing, setIsEditing] = useState(false);
   
   return (
     <ListItem className={classes.item}>
-      <ListItemText>
-        <Typography variant="body1">{debt.motivo}</Typography>
-        <Typography variant="body2">Criado em: {moment(debt.criado).format('DD MMM YYYY')}</Typography>
-      </ListItemText>
+      <Box className="item-data">
+        <Box>
+          <Typography variant="body1">{debt.motivo}</Typography>
+          <Typography variant="body2">Criado em: {moment(debt.criado).format('DD MMM YYYY')}</Typography>
+        </Box>
 
-      <ListItemText className="currency">
-        <Typography variant="subtitle1">{floatToCurrency(debt.valor)}</Typography>
-      </ListItemText>
-
-      <Box className="buttons">
-        <Tooltip title="Editar" arrow>
-          <IconButton onClick={handleEditClick}>
-            <EditIcon className="edit-icon" />
-          </IconButton>
-        </Tooltip>
-
-        <Tooltip title="Excluir" arrow>
-          <IconButton onClick={() => handleDeleteDebt(debt._id)}>
-            <DeleteIcon className="delete-icon" />
-          </IconButton>
-        </Tooltip>
+        <Box className="currency">
+          <Typography variant="subtitle1">{floatToCurrency(debt.valor)}</Typography>
+        </Box>
       </Box>
+
+      {!isEditing && (
+        <Box className="buttons">
+          <Tooltip title="Editar" arrow>
+            <IconButton onClick={() => setIsEditing(true)}>
+              <EditIcon className="edit-icon" />
+            </IconButton>
+          </Tooltip>
+
+          <Tooltip title="Excluir" arrow>
+            <IconButton onClick={() => handleDeleteDebt(debt._id)}>
+              <DeleteIcon className="delete-icon" />
+            </IconButton>
+          </Tooltip>
+        </Box>
+      )}
+
+      <EditDebt
+        isEditing={isEditing}
+        setIsEditing={setIsEditing}
+        debt={debt}
+        allUsers={allUsers}
+        getDebts={getDebts}
+        selectedUser={selectedUser}
+      />
     </ListItem>
   );
 };
