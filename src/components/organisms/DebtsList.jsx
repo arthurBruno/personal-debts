@@ -1,11 +1,19 @@
 import { useState } from 'react';
-import { IconButton, Tooltip } from '@material-ui/core';
+import { Box, IconButton, Tooltip, makeStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos';
 import AddIcon from '@material-ui/icons/Add';
 import DefaultList from '../molecules/DefaultList';
 import ModalAddDebt from '../molecules/ModalAddDebt';
 import DebtItem from './DebtItem';
 import api from '../../functions/api';
+
+const useStyles = makeStyles({
+  returnButton: {
+    '@media (min-width: 959px)': {
+      display: 'none',
+    },
+  },
+});
 
 const DebtsList = ({
   debts,
@@ -15,14 +23,17 @@ const DebtsList = ({
   getUsersAndDebts,
   getDebts,
 }) => {
+  const classes = useStyles();
   const [modalOpen, setModalOpen] = useState(false);
 
   const buttonReturn = () => (
-    <Tooltip title="Retornar" arrow>
-      <IconButton onClick={() => setSelectedUser(null)}>
-        <ArrowBackIcon color="primary" />
-      </IconButton>
-    </Tooltip>
+    <Box className={classes.returnButton}>
+      <Tooltip title="Retornar" arrow>
+        <IconButton onClick={() => setSelectedUser(null)}>
+          <ArrowBackIcon color="primary" />
+        </IconButton>
+      </Tooltip>
+    </Box>
   );
 
   const buttonAdd = () => (
