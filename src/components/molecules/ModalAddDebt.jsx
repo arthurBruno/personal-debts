@@ -4,6 +4,7 @@ import DefaultModal from '../atoms/DefaultModal';
 import DebtForm from '../atoms/DebtForm';
 import validation from '../../functions/utils/validation';
 import api from '../../functions/api';
+import { useEffect } from 'react';
 
 const useStyles = makeStyles({
   form: {
@@ -29,10 +30,16 @@ const ModalAddDebt = ({
   getUsersAndDebts,
 }) => {
   const classes = useStyles();
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(selectedUser);
   const [reason, setReason] = useState('');
   const [amount, setAmount] = useState(0);
   const [fieldsWithError, setFieldsWithError] = useState({});
+
+  useEffect(() => {
+    if (selectedUser && (!user || user.id !== selectedUser.id)) {
+      setUser(selectedUser);
+    }
+  }, [selectedUser]);
 
   const handleAddClick = async () => {
     const validationResult = validation.isDebtValid({ user, reason, amount });
@@ -41,7 +48,7 @@ const ModalAddDebt = ({
       setOpen(false);
       await api.createDebt(user, reason, amount);
       getUsersAndDebts();
-      setUser(null);
+      setUser(selectedUser);
       setReason('');
       setAmount(0);
     } else {
