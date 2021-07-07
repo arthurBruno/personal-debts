@@ -39,6 +39,7 @@ const ModalAddDebt = ({
     if (selectedUser && (!user || user.id !== selectedUser.id)) {
       setUser(selectedUser);
     }
+    // eslint-disable-next-line
   }, [selectedUser]);
 
   const handleAddClick = async () => {
