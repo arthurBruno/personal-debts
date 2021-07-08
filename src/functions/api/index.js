@@ -37,6 +37,10 @@ const api = {
         allUsers: await getAllUsers(),
       }
 
+      if (data.allDebts && data.allDebts.error) {
+        return { error: data.allDebts.error };
+      }
+
       return data;
     } catch (error) {
       return { error };
