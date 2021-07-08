@@ -39,6 +39,7 @@ const DebtForm = ({
       <Autocomplete
         options={allUsers}
         getOptionLabel={(user) => user.name}
+        noOptionsText="Usuário não encontrado"
         value={user}
         onChange={(event, value) => handleChange(setUser, value, 'user')}
         renderInput={(params) => (
