@@ -10,7 +10,7 @@ const useStyles = makeStyles({
   },
 });
 
-const ModalAddDebt = ({
+const DebtForm = ({
   user,
   setUser,
   reason,
@@ -73,4 +73,4 @@ const ModalAddDebt = ({
   );
 };
 
-export default ModalAddDebt;
+export default DebtForm;

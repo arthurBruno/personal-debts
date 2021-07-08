@@ -2,9 +2,10 @@ import { useState } from 'react';
 import { Box, IconButton, Tooltip, makeStyles } from '@material-ui/core';
 import ArrowBackIcon from '@material-ui/icons/ArrowBackIos';
 import AddIcon from '@material-ui/icons/Add';
+import DebtItem from './DebtItem';
 import DefaultList from '../molecules/DefaultList';
 import ModalAddDebt from '../molecules/ModalAddDebt';
-import DebtItem from './DebtItem';
+import WarnDebts from '../atoms/WarnDebts';
 import api from '../../functions/api';
 
 const useStyles = makeStyles({
@@ -66,6 +67,8 @@ const DebtsList = ({
             selectedUser={selectedUser}
           />
         ))}
+
+        {debts.length <= 0 && <WarnDebts />}
       </DefaultList>
 
       <ModalAddDebt

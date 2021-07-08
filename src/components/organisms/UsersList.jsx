@@ -4,9 +4,10 @@ import {
   ListItemText,
   Typography,
 } from '@material-ui/core';
+import ArrowIcon from '@material-ui/icons/KeyboardArrowRight';
 import DefaultList from '../molecules/DefaultList';
 import LettersAvatar from '../atoms/LettersAvatar';
-import ArrowIcon from '@material-ui/icons/KeyboardArrowRight';
+import WarnUsers from '../atoms/WarnUsers';
 
 const UsersList = ({ users, handleUserClick }) => (
   <DefaultList title="Usuários" >
@@ -26,6 +27,8 @@ const UsersList = ({ users, handleUserClick }) => (
         </ListItemIcon>
       </ListItem>
     ))}
+
+    {users.length <= 0 && <WarnUsers />}
   </DefaultList>
 );
 

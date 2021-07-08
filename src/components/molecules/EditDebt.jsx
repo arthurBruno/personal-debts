@@ -20,7 +20,7 @@ const useStyles = makeStyles({
   },
 });
 
-const DebtItem = ({
+const EditDebt = ({
   isEditing,
   setIsEditing,
   debt,
@@ -82,4 +82,4 @@ const DebtItem = ({
   );
 };
 
-export default DebtItem;
+export default EditDebt;
