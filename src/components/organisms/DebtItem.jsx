@@ -32,12 +32,17 @@ const useStyles = makeStyles((theme) => ({
     '& .item-data': {
       display: 'flex',
       placeContent: 'space-between',
-      alignItems: 'center'
+      alignItems: 'center',
+
+      '@media (max-width: 959px)': {
+        display: 'grid',
+        gridTemplateColumns: '100%',
+      },
     },
 
     '& .buttons': {
       position: 'absolute',
-      right: -20,
+      right: 0,
       transition: '0.2s',
       opacity: 0,
       
